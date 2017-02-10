@@ -1,5 +1,6 @@
 package com.example.testing.testingexample;
 
+import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
@@ -16,6 +17,14 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
+//import static android.support.test.espresso.Espresso.onView;
+//import static android.support.test.espresso.action.ViewActions.click;
+//import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
+//import static android.support.test.espresso.action.ViewActions.typeText;
+//import static android.support.test.espresso.assertion.ViewAssertions.matches;
+//import static android.support.test.espresso.matcher.ViewMatchers.withId;
+//import static android.support.test.espresso.matcher.ViewMatchers.withText;
+
 /**
  * Created by on 15/6/4.
  */
@@ -27,17 +36,33 @@ public class MainActivityInstrumentationTest {
     private static final String STRING_TO_BE_TYPED = "Peter";
 
     @Rule
-    public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(
-            MainActivity.class);
+    public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void sayHello(){
-        onView(withId(R.id.editText)).perform(typeText(STRING_TO_BE_TYPED), closeSoftKeyboard()); //line 1
-
-        onView(withText("Say hello!")).perform(click()); //line 2
-
+    public void sayHello() {
+        onView(ViewMatchers.withId(R.id.editText)).perform(typeText(STRING_TO_BE_TYPED), closeSoftKeyboard()); //line 1
+        sleepShort();
+        onView(ViewMatchers.withText("Say hello!")).perform(click()); //line 2
+        sleepShort();
         String expectedText = "Hello, " + STRING_TO_BE_TYPED + "!";
         onView(withId(R.id.textView)).check(matches(withText(expectedText))); //line 3
+        sleepLong();
+    }
+
+    private void sleepShort() {
+        sleep(1500);
+    }
+
+    private void sleepLong() {
+        sleep(2500);
+    }
+
+    private void sleep(long time) {
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 }

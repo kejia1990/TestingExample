@@ -5,20 +5,19 @@ package com.example.testing.testingexample;
  */
 public class Calculator {
 
-    public double sum(double a, double b){
+    public double sum(double a, double b) {
         return a + b;
     }
 
-    public double substract(double a, double b){
-        return 0;
+    public double divide(double a, double b) {
+        if (b == 0) {
+            return 0;
+        }
+        return a / b;
     }
 
-    public double divide(double a, double b){
-        return 0;
-    }
-
-    public double multiply(double a, double b){
-        return 0;
+    public double multiply(double a, double b) {
+        return a * b;
     }
 
 }

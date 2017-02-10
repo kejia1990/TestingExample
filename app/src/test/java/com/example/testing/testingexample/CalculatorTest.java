@@ -24,11 +24,6 @@ public class CalculatorTest {
     }
 
     @Test
-    public void testSubstract() throws Exception {
-        assertEquals(1d, mCalculator.substract(5d, 4d), 0);
-    }
-
-    @Test
     public void testDivide() throws Exception {
         assertEquals(4d, mCalculator.divide(20d, 5d), 0);
     }

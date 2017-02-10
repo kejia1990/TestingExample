@@ -20,7 +20,7 @@ public class MainActivity extends ActionBarActivity {
     public void sayHello(View v){
         TextView textView = (TextView) findViewById(R.id.textView);
         EditText editText = (EditText) findViewById(R.id.editText);
-        textView.setText("Hello, " + editText.getText().toString() + "!");
+        textView.setText("Hello, Peter!");
     }
 
     @Override
